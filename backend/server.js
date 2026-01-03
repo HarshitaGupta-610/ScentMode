@@ -1,29 +1,19 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
-require('dotenv').config();
+const express = require("express");
+const cors = require("cors");
+require("dotenv").config();
+
+const recommendRoute = require("./routes/recommend");
+const healthRoute = require("./routes/health");
 
 const app = express();
 
-// Middlewares
 app.use(cors());
 app.use(express.json());
 
-// Test route
-app.get('/', (req, res) => {
-  res.json({
-    message: 'ScentMode backend is running 🚀',
-    status: 'OK'
-  });
-});
+app.use("/api/health", healthRoute);
+app.use("/api/recommend", recommendRoute);
 
-
-// Start server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-  console.log('Waiting for requests...');
+  console.log(`🚀 ScentMode backend running on port ${PORT}`);
 });
