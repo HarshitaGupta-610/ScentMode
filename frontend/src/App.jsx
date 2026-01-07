@@ -1,24 +1,15 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Welcome from "./pages/Welcome.jsx";
-import Login from "./pages/Login.jsx";
-import PreferenceForm from "./pages/PreferenceForm.jsx";
-import Results from "./pages/Results.jsx";
-import Closet from "./pages/Closet.jsx";
-import ThankYou from "./pages/ThankYou.jsx";
+import Welcome from "./pages/Welcome";
 
-function App() {
+export default function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Welcome />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/form" element={<PreferenceForm />} />
-        <Route path="/results" element={<Results />} />
-        <Route path="/closet" element={<Closet />} />
-        <Route path="/thank-you" element={<ThankYou />} />
+        <Route path="/explore" element={<div className="p-10">Explore Page</div>} />
+        <Route path="/find" element={<div className="p-10">Find My Scent Page</div>} />
+        <Route path="/inspiration" element={<div className="p-10">Occasion Inspiration Page</div>} />
       </Routes>
     </BrowserRouter>
   );
 }
-
-export default App;
