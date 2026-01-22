@@ -21,3 +21,13 @@ export const intensity = [
 export const genders = [
   "Male", "Female", "Unisex"
 ];
+
+// ⭐ Add this (fix)
+export default {
+  moods,
+  outfitStyles,
+  timeOfDay,
+  seasons,
+  intensity,
+  genders
+};

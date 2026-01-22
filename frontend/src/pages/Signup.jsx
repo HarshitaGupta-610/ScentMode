@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 
-export default function Login() {
+export default function Signup() {
   const navigate = useNavigate();
 
   return (
@@ -9,19 +9,20 @@ export default function Login() {
         
         <img src="/long.png" className="w-20 mx-auto mb-4" />
 
-        <h2 className="text-2xl font-bold text-center mb-6 text-[#6A3ED6]">Login</h2>
+        <h2 className="text-2xl font-bold text-center mb-6 text-[#6A3ED6]">Sign Up</h2>
 
+        <input className="w-full border p-3 rounded-lg mb-4" placeholder="Full Name" />
         <input className="w-full border p-3 rounded-lg mb-4" placeholder="Email" />
         <input className="w-full border p-3 rounded-lg mb-4" type="password" placeholder="Password" />
 
         <button 
           onClick={() => navigate("/preferences")} 
           className="w-full py-3 bg-[#6A3ED6] text-white rounded-lg hover:bg-purple-700 transition">
-          Login
+          Create Account
         </button>
 
         <p className="text-center mt-4 text-gray-500">
-          Don’t have an account? <Link to="/signup" className="text-[#6A3ED6]">Sign Up</Link>
+          Already have an account? <Link to="/login" className="text-[#6A3ED6]">Login</Link>
         </p>
       </div>
     </div>
