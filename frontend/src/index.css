@@ -2,3 +2,12 @@
 .input {
   @apply px-4 py-2 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#6A3ED6] bg-white;
 }
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float {
+  animation: float 3.5s ease-in-out infinite;
+}
