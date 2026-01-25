@@ -7,6 +7,8 @@ export default function PreferenceForm() {
   const navigate = useNavigate();
   
   const [form, setForm] = useState({
+    gender: "",
+    age: "",
     mood: "",
     outfit: "",
     timeOfDay: "",
@@ -20,15 +22,56 @@ export default function PreferenceForm() {
 
   return (
     <PageLayout>
-      <div className="w-full max-w-lg bg-white/90 backdrop-blur-xl
+      <div className="w-full max-w-lg bg-white/90 backdrop-blur-xl 
         rounded-3xl shadow-xl border border-white/40 p-8">
 
         <h2 className="text-2xl font-semibold text-[#6A3ED6] mb-6">
           Customize Your Scent
         </h2>
 
-        {/* Horizontal Scroll Sections */}
         <div className="space-y-8">
+
+          {/* Gender */}
+          <div>
+            <h3 className="font-medium mb-3 text-gray-700">Gender</h3>
+            <div className="flex gap-3 overflow-x-auto pb-2">
+              {["Male", "Female", "Unisex"].map((g) => (
+                <button
+                  key={g}
+                  onClick={() => handleSelect("gender", g)}
+                  className={`px-4 py-2 rounded-full border
+                  ${
+                    form.gender === g
+                      ? "bg-[#6A3ED6] text-white"
+                      : "bg-white text-gray-600"
+                  }`}
+                >
+                  {g}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Age */}
+          <div>
+            <h3 className="font-medium mb-3 text-gray-700">Age</h3>
+            <div className="flex gap-3 overflow-x-auto pb-2">
+              {["<18", "18-25", "26-35", "36-45", "45+"].map((a) => (
+                <button
+                  key={a}
+                  onClick={() => handleSelect("age", a)}
+                  className={`px-4 py-2 rounded-full border
+                  ${
+                    form.age === a
+                      ? "bg-[#6A3ED6] text-white"
+                      : "bg-white text-gray-600"
+                  }`}
+                >
+                  {a}
+                </button>
+              ))}
+            </div>
+          </div>
 
           {/* Mood */}
           <div>
@@ -64,7 +107,7 @@ export default function PreferenceForm() {
             </div>
           </div>
 
-          {/* Time */}
+          {/* Time of Day */}
           <div>
             <h3 className="font-medium mb-3 text-gray-700">Time of Day</h3>
             <div className="flex gap-3 overflow-x-auto pb-2">
@@ -117,6 +160,7 @@ export default function PreferenceForm() {
 
         </div>
 
+        {/* Submit */}
         <button
           onClick={() => navigate("/results", { state: form })}
           className="mt-10 w-full py-3 rounded-full
@@ -125,6 +169,7 @@ export default function PreferenceForm() {
         >
           Show Recommendations
         </button>
+
       </div>
     </PageLayout>
   );

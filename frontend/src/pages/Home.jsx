@@ -5,22 +5,22 @@ export default function Home() {
     {
       title: "Boosts Confidence",
       text: "The right scent can elevate confidence by up to 40%.",
-      icon: "✨",
+      
     },
     {
       title: "Long-lasting Memory",
       text: "People recall fragrances 10× longer than visuals.",
-      icon: "🕯️",
+      
     },
     {
       title: "Instant Mood Lift",
       text: "Scents influence emotions within seconds.",
-      icon: "🌿",
+      
     },
     {
       title: "Enhances Presence",
       text: "Occasion-matched perfumes elevate your aura instantly.",
-      icon: "🌙",
+      
     },
   ];
 
