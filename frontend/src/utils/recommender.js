@@ -1,17 +1,16 @@
-const perfumes = require("../data/perfumes"); // we will create this file
+import perfumes from "../constants/perfumes";
 
 function scorePerfume(user, perfume) {
   let score = 0;
 
-  // Gender match (bonus)
+  // Bonus for gender match
   if (perfume.gender === user.gender || perfume.gender === "Unisex") {
     score += 5;
   }
 
-  // Weighted feature comparison
   const fields = ["age", "mood", "outfit", "season", "timeOfDay", "intensity"];
 
-  fields.forEach(field => {
+  fields.forEach((field) => {
     const userChoice = user[field];
     if (userChoice && perfume.weights[field][userChoice] !== undefined) {
       score += perfume.weights[field][userChoice];
@@ -21,15 +20,13 @@ function scorePerfume(user, perfume) {
   return score;
 }
 
-function getRecommendations(user) {
+export function getRecommendations(user) {
   const scored = perfumes
-    .map(p => ({
+    .map((p) => ({
       ...p,
-      score: scorePerfume(user, p)
+      score: scorePerfume(user, p),
     }))
     .sort((a, b) => b.score - a.score);
 
   return scored.slice(0, 5);
 }
-
-module.exports = getRecommendations;
