@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Welcome from "./pages/Welcome";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import OAuthCallback from "./pages/OAuthCallback";
 import PreferenceForm from "./pages/PreferenceForm";
 import Results from "./pages/Results";
 import Dashboard from "./pages/Dashboard";
@@ -20,6 +21,7 @@ export default function App() {
         <Route path="/welcome" element={<Welcome />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/oauth-callback" element={<OAuthCallback />} />
 
         <Route path="/preferences" element={<PreferenceForm />} />
         <Route path="/results" element={<Results />} />
