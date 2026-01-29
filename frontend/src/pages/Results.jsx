@@ -1,34 +1,8 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import  perfumes from "../constants/perfumes";
-import { useAuth } from "../context/AuthContext";
-import axios from "axios";
-import { useState } from "react";
 
 export default function Results() {
   const { state: prefs } = useLocation();
-  const { currentUser } = useAuth();
-  const navigate = useNavigate();
-  const [saving, setSaving] = useState(null);
-
-  const handleSave = async (perfume) => {
-    if (!currentUser) {
-      navigate("/login");
-      return;
-    }
-    setSaving(perfume.id);
-    try {
-      await axios.post("http://localhost:5000/api/user/save-perfume", {
-        uid: currentUser.uid,
-        perfume
-      });
-      alert("Perfume added to your closet!");
-    } catch (error) {
-      console.error("Error saving perfume:", error);
-      alert("Failed to save perfume.");
-    } finally {
-      setSaving(null);
-    }
-  };
 
   // Matching Engine: Compute score for each perfume
   const scored = perfumes
@@ -107,16 +81,13 @@ export default function Results() {
             </div>
 
             <button
-              onClick={() => handleSave(p)}
-              disabled={saving === p.id}
               className="
                 w-full py-3 rounded-full text-white font-semibold
                 bg-gradient-to-r from-[#6A3ED6] to-[#8B5CF6]
                 shadow-lg hover:scale-[1.04] transition
-                disabled:opacity-50 disabled:cursor-not-allowed
               "
             >
-              {saving === p.id ? "Saving..." : "Add to Closet"}
+              Add to Closet
             </button>
           </div>
         ))}

@@ -5,7 +5,7 @@ const passport = require("passport");
 require('dotenv').config();
 const connectDB = require('./config/db');
 
-// Connect to Database
+// Connect to database
 connectDB();
 
 const app = express();
@@ -17,7 +17,6 @@ try { require("./config/passport"); } catch (e) { /* no-op if strategies not set
 app.use(passport.initialize());
 
 app.use("/api/recommend", require("./routes/recommend"));
-app.use("/api/user", require("./routes/user"));
 app.use("/auth", require("./routes/auth"));
 app.use("/health", require("./routes/health"));
 
