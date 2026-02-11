@@ -1,5 +1,5 @@
-import { useLocation } from "react-router-dom";
-import  perfumes from "../constants/perfumes";
+import { useLocation, Link } from "react-router-dom";
+import perfumes from "../constants/perfumes";
 
 export default function Results() {
   const { state: prefs } = useLocation();
@@ -23,41 +23,49 @@ export default function Results() {
     .slice(0, 5); // Top 5
 
   return (
-    <div className="pt-24 pb-20 px-6 max-w-7xl mx-auto">
-      <h1 className="text-4xl font-bold text-[#6A3ED6] mb-3">
-        Your Perfect Matches
-      </h1>
+    <div className="w-full max-w-6xl mx-auto px-6 py-8">
+      <div className="mb-12">
+        <Link 
+          to="/preferences" 
+          className="inline-flex items-center gap-2 text-[#6A3ED6] font-semibold mb-6 hover:underline"
+        >
+          ← Adjust Preferences
+        </Link>
+        
+        <h1 className="text-4xl md:text-5xl font-bold text-[#6A3ED6] mb-3">
+          Your Perfect Matches
+        </h1>
 
-      <p className="text-gray-600 text-lg mb-12">
-        Based on your selected mood, outfit, time, season & intensity.
-      </p>
+        <p className="text-lg text-gray-600">
+          Based on your {prefs.mood} mood, {prefs.outfit} style & {prefs.season} season preferences.
+        </p>
+      </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {scored.map((p, idx) => (
           <div
             key={idx}
             className="
-              bg-white/70 backdrop-blur-2xl
+              bg-white/70 backdrop-blur-xl
               border border-white/50 rounded-3xl
-              shadow-[0_15px_40px_rgba(106,62,214,0.15)]
-              hover:shadow-[0_25px_60px_rgba(106,62,214,0.35)]
+              shadow-lg hover:shadow-2xl
               transition-all duration-500 p-7 relative
               hover:-translate-y-2
             "
           >
-            <div className="relative h-56 flex justify-center items-center mb-6">
+            <div className="relative h-56 flex justify-center items-center mb-6 bg-purple-50 rounded-2xl">
               <img
                 src={p.image}
                 alt={p.name}
-                className="h-full object-contain drop-shadow-2xl animate-float"
+                className="h-full object-contain drop-shadow-2xl"
               />
             </div>
 
             <h2 className="text-2xl font-semibold text-gray-900">{p.name}</h2>
-            <p className="text-gray-500 mb-4">{p.brand}</p>
+            <p className="text-gray-600 text-sm mb-4">{p.brand}</p>
 
             <div className="bg-purple-50 rounded-xl p-4 mb-4 border border-purple-100">
-              <p className="text-xs font-semibold text-purple-700">
+              <p className="text-xs font-semibold text-purple-700 mb-1">
                 Key Notes
               </p>
               <p className="text-gray-700 text-sm">{p.notes}</p>
@@ -75,8 +83,8 @@ export default function Results() {
               </div>
 
               <div className="bg-purple-50 p-3 rounded-xl">
-                <p className="text-xs font-semibold text-purple-700">Occasion</p>
-                <p className="text-gray-600 text-sm">{p.occasions.join(", ")}</p>
+                <p className="text-xs font-semibold text-purple-700">Score</p>
+                <p className="text-gray-600 text-sm font-bold">{p.score}/15</p>
               </div>
             </div>
 
@@ -87,11 +95,23 @@ export default function Results() {
                 shadow-lg hover:scale-[1.04] transition
               "
             >
-              Add to Closet
+              Save to Closet
             </button>
           </div>
         ))}
       </div>
+
+      {scored.length === 0 && (
+        <div className="text-center py-12">
+          <p className="text-gray-600 text-lg">No matches found. Try adjusting your preferences!</p>
+          <Link 
+            to="/preferences" 
+            className="inline-block mt-4 px-8 py-3 bg-gradient-to-r from-[#6A3ED6] to-[#8B5CF6] text-white rounded-full font-semibold hover:scale-[1.03] transition"
+          >
+            Adjust Preferences
+          </Link>
+        </div>
+      )}
     </div>
   );
 }

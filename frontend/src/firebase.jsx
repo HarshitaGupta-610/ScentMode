@@ -29,3 +29,8 @@ export const analytics = null; // Temporarily disabled to prevent network blocki
 
 // 🌐 GOOGLE PROVIDER (Added for Login)
 export const googleProvider = new GoogleAuthProvider();
+
+// Configure Google Provider
+googleProvider.setCustomParameters({
+  prompt: 'select_account' // Always show account selection
+});

@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import axios from "axios";
 
 export default function Dashboard() {
   const { currentUser, logout } = useAuth();
   const navigate = useNavigate();
-  const [verificationResult, setVerificationResult] = useState(null);
 
   useEffect(() => {
     if (!currentUser) {
@@ -14,75 +12,101 @@ export default function Dashboard() {
     }
   }, [currentUser, navigate]);
 
-  const handleLogout = async () => {
-    try {
-      await logout();
-      navigate("/login");
-    } catch (error) {
-      console.error("Failed to log out", error);
-    }
-  };
-
-  const verifyToken = async () => {
-    try {
-      if (!currentUser) return;
-      const token = await currentUser.getIdToken();
-      // Assuming backend is on localhost:5000
-      const response = await axios.post("http://localhost:5000/auth/verify-firebase", { token });
-      setVerificationResult(response.data);
-    } catch (error) {
-      console.error("Verification failed", error);
-      setVerificationResult({ success: false, error: error.message });
-    }
-  };
-
-  if (!currentUser) return null; // or loading spinner
+  if (!currentUser) return null;
 
   return (
-    <div className="pt-24 max-w-5xl mx-auto px-6">
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-3xl font-bold text-[#6A3ED6]">Dashboard</h2>
-        <button 
-          onClick={handleLogout}
-          className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded transition">
-          Logout
-        </button>
+    <div className="w-full max-w-6xl mx-auto px-6">
+      {/* Header Section */}
+      <div className="mb-12">
+        <h1 className="text-4xl font-bold text-[#6A3ED6] mb-3">
+          Welcome back, {currentUser.displayName?.split(' ')[0]}!
+        </h1>
+        <p className="text-gray-600 text-lg">Manage your profile and explore fragrance recommendations tailored just for you.</p>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-6">
-        <div className="bg-white p-6 shadow rounded-xl">
-          <h3 className="text-xl font-semibold mb-4">User Profile</h3>
-          <div className="flex items-center gap-4 mb-4">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+        {/* User Profile Card */}
+        <div className="lg:col-span-1 bg-white/70 backdrop-blur-xl rounded-3xl shadow-xl border border-white/50 p-8">
+          <h2 className="text-2xl font-semibold text-[#6A3ED6] mb-6">Your Profile</h2>
+          
+          <div className="flex flex-col items-center text-center mb-6">
             {currentUser.photoURL && (
               <img 
                 src={currentUser.photoURL} 
                 alt="Profile" 
-                className="w-16 h-16 rounded-full border"
+                className="w-24 h-24 rounded-full border-4 border-purple-200 mb-4 shadow-lg"
               />
             )}
-            <div>
-              <p className="font-bold text-lg">{currentUser.displayName}</p>
-              <p className="text-gray-600">{currentUser.email}</p>
-              <p className="text-xs text-gray-400 mt-1">UID: {currentUser.uid}</p>
-            </div>
+            <p className="font-bold text-xl text-gray-900">{currentUser.displayName}</p>
+            <p className="text-gray-600 text-sm">{currentUser.email}</p>
           </div>
           
-          <button 
-            onClick={verifyToken}
-            className="w-full py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition">
-            Verify Token with Backend
-          </button>
-
-          {verificationResult && (
-            <div className="mt-4 p-3 bg-gray-100 rounded text-sm overflow-auto max-h-40">
-              <pre>{JSON.stringify(verificationResult, null, 2)}</pre>
-            </div>
-          )}
+          <div className="space-y-3">
+            <Link
+              to="/preferences"
+              className="block w-full py-2 px-4 text-center rounded-xl font-semibold bg-gradient-to-r from-[#6A3ED6] to-[#8B5CF6] text-white hover:scale-[1.02] transition"
+            >
+              Find Fragrances
+            </Link>
+            <Link
+              to="/closet"
+              className="block w-full py-2 px-4 text-center rounded-xl font-semibold border-2 border-[#6A3ED6] text-[#6A3ED6] hover:bg-purple-50 transition"
+            >
+              View My Closet
+            </Link>
+          </div>
         </div>
-        
-        <div className="bg-white p-6 shadow rounded-xl">
-          <h3 className="text-xl font-semibold mb-4">Recent Recommendations</h3>
-          <p className="text-gray-500">No recent recommendations found.</p>
+
+        {/* Quick Actions */}
+        <div className="lg:col-span-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {/* Get Recommendations Card */}
+            <Link
+              to="/preferences"
+              className="bg-white/70 backdrop-blur-xl rounded-3xl shadow-xl border border-white/50 p-8 hover:shadow-2xl hover:-translate-y-1 transition-all group"
+            >
+              <div className="text-4xl mb-4">✨</div>
+              <h3 className="text-xl font-semibold text-gray-900 group-hover:text-[#6A3ED6] transition mb-2">Get Recommendations</h3>
+              <p className="text-gray-600 text-sm">Discover fragrances matched to your mood and style</p>
+            </Link>
+
+            {/* Your Closet Card */}
+            <Link
+              to="/closet"
+              className="bg-white/70 backdrop-blur-xl rounded-3xl shadow-xl border border-white/50 p-8 hover:shadow-2xl hover:-translate-y-1 transition-all group"
+            >
+              <div className="text-4xl mb-4">💎</div>
+              <h3 className="text-xl font-semibold text-gray-900 group-hover:text-[#6A3ED6] transition mb-2">My Closet</h3>
+              <p className="text-gray-600 text-sm">View and manage your saved fragrances</p>
+            </Link>
+
+            {/* Brand Info Card */}
+            <Link
+              to="/"
+              className="bg-white/70 backdrop-blur-xl rounded-3xl shadow-xl border border-white/50 p-8 hover:shadow-2xl hover:-translate-y-1 transition-all group"
+            >
+              <div className="text-4xl mb-4">🎯</div>
+              <h3 className="text-xl font-semibold text-gray-900 group-hover:text-[#6A3ED6] transition mb-2">About ScentMode</h3>
+              <p className="text-gray-600 text-sm">Learn more about our fragrance curation</p>
+            </Link>
+
+            {/* Logout Card */}
+            <button
+              onClick={async () => {
+                try {
+                  await logout();
+                  navigate("/login");
+                } catch (error) {
+                  console.error("Failed to log out", error);
+                }
+              }}
+              className="bg-red-50 backdrop-blur-xl rounded-3xl shadow-xl border border-red-200 p-8 hover:shadow-2xl hover:-translate-y-1 transition-all group text-left"
+            >
+              <div className="text-4xl mb-4">👋</div>
+              <h3 className="text-xl font-semibold text-red-900 group-hover:text-red-600 transition mb-2">Logout</h3>
+              <p className="text-red-700 text-sm">Sign out from your account</p>
+            </button>
+          </div>
         </div>
       </div>
     </div>

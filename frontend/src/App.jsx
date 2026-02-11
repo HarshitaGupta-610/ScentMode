@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import PageLayout from "./layout/PageLayout";
 
 import Home from "./pages/Home";
 import Welcome from "./pages/Welcome";
@@ -23,11 +24,11 @@ export default function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/oauth-callback" element={<OAuthCallback />} />
 
-        <Route path="/preferences" element={<PreferenceForm />} />
-        <Route path="/results" element={<Results />} />
+        <Route path="/preferences" element={<PageLayout><PreferenceForm /></PageLayout>} />
+        <Route path="/results" element={<PageLayout><Results /></PageLayout>} />
 
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/closet" element={<Closet />} />
+        <Route path="/dashboard" element={<PageLayout><Dashboard /></PageLayout>} />
+        <Route path="/closet" element={<PageLayout><Closet /></PageLayout>} />
       </Routes>
     </>
   );

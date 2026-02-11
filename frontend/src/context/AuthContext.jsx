@@ -23,6 +23,8 @@ export function AuthProvider({ children }) {
       const result = await signInWithPopup(auth, googleProvider);
       const user = result.user;
       
+      console.log("✅ Google login successful:", user.email);
+      
       // Check if user exists in Firestore
       // Use try-catch specifically for Firestore to prevent blocking auth success
       try {
@@ -37,15 +39,20 @@ export function AuthProvider({ children }) {
             photoURL: user.photoURL,
             createdAt: serverTimestamp(),
           });
+          console.log("✅ User document created in Firestore");
+        } else {
+          console.log("✅ User document already exists");
         }
       } catch (dbError) {
-        console.error("Error creating user in Firestore:", dbError);
+        console.error("⚠️ Error with Firestore:", dbError);
         // We do NOT re-throw here so the user can still "login" even if DB fails
       }
       
       return user;
     } catch (error) {
-      console.error("Error signing in with Google", error);
+      console.error("❌ Error signing in with Google:", error);
+      console.error("Error Code:", error.code);
+      console.error("Error Message:", error.message);
       throw error;
     }
   }
