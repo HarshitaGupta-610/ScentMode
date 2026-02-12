@@ -12,6 +12,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+const closetRoutes = require("./routes/closet");
+app.use("/api/closet", closetRoutes);
+
+
 // initialize passport strategies (backend/config/passport.js)
 try { require("./config/passport"); } catch (e) { /* no-op if strategies not set up */ }
 app.use(passport.initialize());
