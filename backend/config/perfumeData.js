@@ -2,6 +2,7 @@ module.exports = [
   {
     id: 1,
     name: "Midnight Glam",
+    brand: "Maison Lumiere",
     category: "Oriental",
     moods: ["Bold", "Sensual"],
     outfitStyles: ["Glam", "Formal"],
@@ -9,11 +10,16 @@ module.exports = [
     seasons: ["Winter", "Autumn"],
     intensity: "Strong",
     gender: ["Female", "Unisex"],
-    ageRange: [21, 40]
+    ageRange: [21, 40],
+    notes: "Black cherry, amber, vanilla",
+    longevity: "Long",
+    sillage: "Strong",
+    image: "https://images.unsplash.com/photo-1541643600914-78b084683601?w=800"
   },
   {
     id: 2,
     name: "Soft Elegance",
+    brand: "Atelier Fleur",
     category: "Floral",
     moods: ["Soft", "Elegant"],
     outfitStyles: ["Ethnic", "Formal"],
@@ -21,11 +27,16 @@ module.exports = [
     seasons: ["Spring", "Summer"],
     intensity: "Medium",
     gender: ["Female", "Unisex"],
-    ageRange: [18, 35]
+    ageRange: [18, 35],
+    notes: "Peony, jasmine, soft musk",
+    longevity: "Moderate",
+    sillage: "Soft",
+    image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800"
   },
   {
     id: 3,
     name: "Clean Confidence",
+    brand: "Nordic Scent",
     category: "Musky",
     moods: ["Calm", "Elegant"],
     outfitStyles: ["Formal", "Casual"],
@@ -33,11 +44,16 @@ module.exports = [
     seasons: ["Spring", "Winter"],
     intensity: "Light",
     gender: ["Male", "Unisex"],
-    ageRange: [25, 55]
+    ageRange: [25, 55],
+    notes: "Bergamot, iris, white musk",
+    longevity: "Moderate",
+    sillage: "Moderate",
+    image: "https://images.unsplash.com/photo-1587017539504-67cfbddac569?w=800"
   },
   {
     id: 4,
     name: "Electric Aura",
+    brand: "Pulse Parfums",
     category: "Fruity",
     moods: ["Energetic", "Bold"],
     outfitStyles: ["Street", "Casual"],
@@ -45,11 +61,16 @@ module.exports = [
     seasons: ["Summer"],
     intensity: "Medium",
     gender: ["Unisex"],
-    ageRange: [18, 30]
+    ageRange: [18, 30],
+    notes: "Grapefruit, pear, cedar",
+    longevity: "Moderate",
+    sillage: "Moderate",
+    image: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=800"
   },
   {
     id: 5,
     name: "Ocean Calm",
+    brand: "Azure Coast",
     category: "Aquatic",
     moods: ["Calm", "Soft"],
     outfitStyles: ["Sporty", "Casual"],
@@ -57,11 +78,16 @@ module.exports = [
     seasons: ["Summer"],
     intensity: "Light",
     gender: ["Unisex"],
-    ageRange: [18, 60]
+    ageRange: [18, 60],
+    notes: "Sea salt, neroli, driftwood",
+    longevity: "Moderate",
+    sillage: "Soft",
+    image: "https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?w=800"
   },
   {
     id: 6,
     name: "Royal Oud",
+    brand: "Crown Reserve",
     category: "Oud",
     moods: ["Bold", "Elegant"],
     outfitStyles: ["Ethnic", "Formal"],
@@ -69,6 +95,11 @@ module.exports = [
     seasons: ["Winter"],
     intensity: "Strong",
     gender: ["Male", "Unisex"],
-    ageRange: [30, 60]
+    ageRange: [30, 60],
+    notes: "Oud, saffron, sandalwood",
+    longevity: "Very Long",
+    sillage: "Strong",
+    image: "https://images.unsplash.com/photo-1585386959984-a4155224a1ad?q=80&w=800&auto=format&fit=crop"
+
   }
 ];
