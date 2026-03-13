@@ -1,6 +1,6 @@
 # 🌸 ScentMode
 
-AI-powered Occasion Stylist for Perfumes.
+AI-powered Occasion Stylist for Perfumes.!
 
 ## Tech Stack
 - Frontend: React + Vite
