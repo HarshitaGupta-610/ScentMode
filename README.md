@@ -10,7 +10,7 @@ AI-powered Occasion Stylist for Perfumes.!
 
 ## Setup Instructions
 
-### Backend
+### Backend Commands
 ```bash
 cd backend
 npm install
