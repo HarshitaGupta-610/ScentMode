@@ -8,7 +8,7 @@ AI-powered Occasion Stylist for Perfumes.!
 - Database: MongoDB
 - AI Logic: Rule + Weight-based Recommender
 
-## Setup Instructions
+
 
 ### Backend Commands
 ```bash
